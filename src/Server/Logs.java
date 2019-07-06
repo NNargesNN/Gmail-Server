@@ -86,6 +86,14 @@ public class Logs {
         System.out.print(dateTime.format(formatter));
         System.out.println();
     }
-
+    public static void deleteMsg(User user, Gmail mail){
+        System.out.println(user.getUsername()+" removemsg");
+        System.out.println("message: "+mail.getSubject()+" "+mail.getSender());
+        System.out.print("time: ");
+        LocalDateTime dateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        System.out.print(dateTime.format(formatter));
+        System.out.println();
+    }
 
 }
