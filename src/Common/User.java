@@ -2,9 +2,7 @@ package Common;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -14,8 +12,21 @@ public class User implements Serializable {
     private String password;
     private int age;
     private Gender gender;
-    private int phoneNumber;
+    private long phoneNumber;
+    //    private String image;
+    private byte[] image = new byte[10000000];
 
+    public User(String username, String password) {
+
+        this.username = username;
+        this.password = password;
+    }
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+    public byte[] getImage() {
+        return image;
+    }
     public ArrayList<UserMail> mails = new ArrayList<>();
 
 
@@ -47,25 +58,15 @@ public class User implements Serializable {
     }
 
 
-//    public byte[] getImage() {
-//
-//        return image;
-//    }
-//
-//
-//    public void setImage(byte[] image) {
-//
-//        this.image = image;
-//    }
 
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
 
         this.phoneNumber = phoneNumber;
     }
 
 
-    public int getPhoneNumber() {
+    public long getPhoneNumber() {
 
         return phoneNumber;
     }
@@ -156,17 +157,8 @@ public class User implements Serializable {
     @Override
     public String toString() {
 
-        return "User{" +
-                "name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", age=" + age +
-                ", gender=" + gender +
-                ", phoneNumber=" + phoneNumber +
-//                ", image=" + Arrays.toString(image) +
-                ", mails=" + mails +
-                '}';
+        return
+                " username='" + username + '\'';
     }
 }
 

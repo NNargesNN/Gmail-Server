@@ -1,14 +1,26 @@
 package Common;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 
 public class UserMail implements Serializable {
     private static final long serialVersionUID = 10001L;
     private Gmail gmail;
-    private Set<MailType> mailTypeSet;
+    public Set<MailType> mailTypeSet;
     private UserMail previous;
     private UserMail next;
+
+
+    @Override
+    public String toString() {
+
+        return "UserMail{" +
+                "gmail=" + gmail +
+                ", mailTypeSet=" + mailTypeSet +
+
+                '}';
+    }
 
 
     public UserMail getPrevious() {
@@ -71,4 +83,20 @@ public class UserMail implements Serializable {
         this.mailTypeSet = mailTypeSet;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserMail userMail = (UserMail) o;
+        return Objects.equals(gmail, userMail.gmail);
+    }
+
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(gmail);
+    }
 }

@@ -34,13 +34,16 @@ public class Server implements Runnable {
         }
         System.out.println(ALLUSERS.size());
         //////////////////
+        for(User user :ALLUSERS){
+            user.mails=new ArrayList<>();
+        }
         File Path = new File("src/DataBase/UsersMails");
         File[] listOfUsers = Path.listFiles();
         int n1=(listOfUsers==null || listOfUsers.length==0)?0:listOfUsers.length;
         for (int i = 0; i <n1 ; i++) {
             File file = listOfUsers[i];
 
-            for (int j = 0; j <file.listFiles().length ; j++) {
+            //for (int j = 0; j <file.listFiles().length ; j++) {
                 File[] inner=file.listFiles();
                 int n2=(inner==null || inner.length==0)?0:inner.length;
                 for (int k = 0; k <n2; k++) {
@@ -49,17 +52,20 @@ public class Server implements Runnable {
                     for (int y = 0; y <n3 ; y++) {
                         if (files[y].isFile() && files[y].getName().endsWith(".ser")) {
                             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(files[y]));
-                            for (int l = 0; l < ALLUSERS.size(); l++) {
-                                if (ALLUSERS.get(l).getUsername().equals(file.getName()/*.substring(0, file.getName().length() - 4)*/)) {
-                                    ALLUSERS.get(l).mails.add((UserMail) ois.readObject());
-                                }
-                            }
+
+                                //(ALLUSERS.get(ALLUSERS.indexOf(new User(file.getName()))).getUsername().equals(file.getName()/*.substring(0, file.getName().length() - 4)*/)) {
+                                    ALLUSERS.get(ALLUSERS.indexOf(new User(file.getName()))).mails.add((UserMail) ois.readObject());
+
+
                             ois.close();
                         }
                     }
                 }
 
-            }
+            //}
+        }
+        for(User user:ALLUSERS){
+            System.out.println(user.getUsername()+"  "+user.mails.size());
         }
 
     }
