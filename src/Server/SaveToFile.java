@@ -26,6 +26,7 @@ public class SaveToFile {
                 FileOutputStream fos = new FileOutputStream("src/Database/UsersInformation/" + user.getUsername() + "/email" + (i + 1) + "/" + "email" + (i + 1) + ".ser");
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 oos.writeObject(userMail);
+                oos.flush();
                 oos.close();
                 fos.close();
             }
